@@ -1,0 +1,53 @@
+@extends('componet')
+@section('titulo', 'All Employees')
+@section('contenido')
+<nav class="nav-waper indigo">
+    <div class="container">
+    <span class="brand-logo">CRM</span>
+    <ul class="right">
+<li><a href="#"><?php if(isset($_SESSION["usuario"])){ echo $_SESSION["usuario"];} ?></a></li>
+<?php if(isset($_SESSION["usuario"])){ ?>
+
+<li><a href="{{url('accesos/')}}">Accesos</a>
+<li><a href="{{url('employee/')}}">Empleados</a>
+
+<?php } ?>
+
+<li><a href="#login" class="modal-trigger">Log In</a></li>
+<li><a href="{{url('/login')}}" class="btn-floating indigo darken-4 z-depth-0"><i class="material-icons">person_outline</i></a></li>
+</ul>
+    </div>
+</nav>
+
+<div class="container">
+    <h2>add employee</h2>
+    <a href="javascript:history.back()" class="btn-floating indigo z-depth-0"><i class="material-icons">arrow_back</i></a>
+    <div class="col s12 15 offset-12">
+    <form action="{{url('employee')}}" method="post">
+		@csrf()
+            <div class="input-field">
+                <i class="material-icons prefix">person_outline</i>
+                <input type="text" name="employeeCode" placeholder="employee code" required>
+            </div>
+
+            <div class="input-field">
+                <i class="material-icons prefix">person_outline</i>
+                <input type="text" name="firstName" placeholder="first Name" required>
+            </div>
+
+            <div class="input-field">
+                <i class="material-icons prefix">person_outline</i>
+                <input type="text" name="lastName" placeholder="last Name" required>
+            </div>
+
+            <div class="input-field">
+                <input class="btn indigo" type="submit" value="save">
+            </div>
+
+    
+        </form>
+    </div>
+</div>
+
+
+@endsection
